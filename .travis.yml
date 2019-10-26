@@ -12,6 +12,9 @@ env:
     - VERSION=rocky-2019.3.0
     - VERSION=rocky-2019.4.0
 
+before_script:
+  - bash scripts/lint.sh
+
 script:
   - bash scripts/build.sh
 
