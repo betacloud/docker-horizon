@@ -9,7 +9,9 @@
 # Set default values
 
 BUILD_OPTS=${BUILD_OPTS:-}
-HASH_REPOSITORY=$(git rev-parse --short HEAD)
+CREATED=$(date --rfc-3339=ns)
+REVISION=$(git rev-parse --short HEAD)
+VERSION=${VERSION:-latest}
 
 # source: https://stackoverflow.com/questions/32113330/check-if-imagetag-combination-already-exists-on-docker-hub
 function docker_tag_exists() {
@@ -23,7 +25,9 @@ if docker_tag_exists $REPOSITORY $VERSION; then
 else
     docker build \
         --build-arg "VERSION=$VERSION" \
-        --label "io.betacloud.${REPOSITORY#betacloud/}=$HASH_REPOSITORY" \
+        --label "org.opencontainers.image.created=$CREATED" \
+        --label "org.opencontainers.image.revision=$REVISION" \
+        --label "org.opencontainers.image.version=$VERSION" \
         --tag "$REPOSITORY:$VERSION" \
         --squash \
         $BUILD_OPTS .
