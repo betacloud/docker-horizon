@@ -28,7 +28,7 @@ if docker_tag_exists $REPOSITORY $VERSION; then
     NOBUILD=1
 fi
 
-if [[ -z $NOBUILD || SOURCE_REGISTRY == "quay.io" ]]; then
+if [[ -z $NOBUILD || $SOURCE_REGISTRY == "quay.io" ]]; then
     docker build \
         --build-arg "SOURCE=$SOURCE_REGISTRY/$SOURCE_REPOSITORY" \
         --build-arg "VERSION=$VERSION" \

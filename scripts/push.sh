@@ -20,7 +20,7 @@ if docker_tag_exists $REPOSITORY $VERSION; then
     NOPUSH=1
 fi
 
-if [[ -z $NOPUSH || SOURCE_REGISTRY == "quay.io" ]]; then
+if [[ -z $NOPUSH || $SOURCE_REGISTRY == "quay.io" ]]; then
     docker push "$REPOSITORY:$VERSION"
     docker rmi "$REPOSITORY:$VERSION"
 else
