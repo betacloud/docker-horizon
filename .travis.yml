@@ -11,6 +11,8 @@ env:
   matrix:
     - VERSION=rocky-2019.3.0 SOURCE_REGISTRY=index.docker.io
     - VERSION=rocky-2019.4.0 SOURCE_REGISTRY=index.docker.io
+    - VERSION=rocky-2020.1.0 SOURCE_REGISTRY=index.docker.io
+    - VERSION=train-2020.1.0 SOURCE_REGISTRY=index.docker.io
     - VERSION=rocky SOURCE_REGISTRY=quay.io
     - VERSION=stein SOURCE_REGISTRY=quay.io
     - VERSION=train SOURCE_REGISTRY=quay.io
