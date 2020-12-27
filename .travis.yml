@@ -9,17 +9,7 @@ env:
   global:
     - REPOSITORY=betacloud/horizon
   matrix:
-    - VERSION=rocky-2019.3.0 SOURCE_REGISTRY=index.docker.io
-    - VERSION=rocky-2019.4.0 SOURCE_REGISTRY=index.docker.io
-    - VERSION=rocky-2020.1.0 SOURCE_REGISTRY=index.docker.io
-    - VERSION=train-2020.1.0 SOURCE_REGISTRY=index.docker.io
-    - VERSION=rocky SOURCE_REGISTRY=quay.io
-    - VERSION=stein SOURCE_REGISTRY=quay.io
-    - VERSION=train SOURCE_REGISTRY=quay.io
-    - VERSION=latest SOURCE_REGISTRY=quay.io
-
-before_script:
-  - bash scripts/lint.sh
+    - VERSION=victoria SOURCE_REGISTRY=quay.io
 
 script:
   - bash scripts/build.sh
@@ -30,11 +20,3 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
-
-notifications:
-  irc:
-    channels:
-      - "irc.freenode.org#betacloud"
-    template:
-      - "%{result} %{repository_slug}: %{commit_subject} %{build_url}"
-    skip_join: true
